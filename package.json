@@ -1,0 +1,30 @@
+{
+  "name": "assignment3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "start": "ts-node src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.7",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "eslint": "^9.30.0",
+    "express": "^5.1.0",
+    "glob": "^11.0.3",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.1",
+    "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
+    "ts-node-dev": "^2.0.0"
+  }
+}
