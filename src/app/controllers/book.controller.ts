@@ -30,6 +30,10 @@ const handleError = (error: any, res: Response) => {
 bookRoutes.post("/", async (req: Request, res: Response) => {
   try {
     const body = req.body;
+    if (await Books.exists({ isbn: body.isbn })) {
+      throw new Error("Book already exists");
+    }
+
     const book = await Books.create(body);
     res.status(201).json({
       success: true,

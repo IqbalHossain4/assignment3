@@ -41,6 +41,9 @@ const handleError = (error, res) => {
 exports.bookRoutes.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
+        if (yield book_model_1.Books.exists({ isbn: body.isbn })) {
+            throw new Error("Book already exists");
+        }
         const book = yield book_model_1.Books.create(body);
         res.status(201).json({
             success: true,
