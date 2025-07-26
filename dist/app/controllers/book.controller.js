@@ -57,14 +57,35 @@ exports.bookRoutes.post("/", (req, res) => __awaiter(void 0, void 0, void 0, fun
 }));
 // 2. Get All Books
 exports.bookRoutes.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         const query = req.query.genre;
+        const page = (_a = req.query) === null || _a === void 0 ? void 0 : _a.page;
+        const totalBooks = yield book_model_1.Books.countDocuments();
+        const limit = 5;
         let books;
         if (query) {
             books = yield book_model_1.Books.find({ genre: query }).sort({ title: 1 }).limit(10);
         }
+        else if (page) {
+            books = yield book_model_1.Books.find()
+                .skip((Number(page) - 1) * limit)
+                .limit(limit);
+        }
         else {
             books = yield book_model_1.Books.find().sort({ title: 1 }).limit(10);
+        }
+        if (page) {
+            res.status(200).json({
+                success: true,
+                message: "Books retrieved successfully",
+                data: books,
+                meta: {
+                    totalItems: totalBooks,
+                    currentPage: page,
+                    totalPages: Math.ceil(totalBooks / limit),
+                },
+            });
         }
         res.status(200).json({
             success: true,

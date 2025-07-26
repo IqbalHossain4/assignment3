@@ -49,13 +49,31 @@ bookRoutes.post("/", async (req: Request, res: Response) => {
 bookRoutes.get("/", async (req: Request, res: Response) => {
   try {
     const query = req.query.genre;
+    const page = req.query?.page;
+    const totalBooks = await Books.countDocuments();
+    const limit = 5;
     let books;
     if (query) {
       books = await Books.find({ genre: query }).sort({ title: 1 }).limit(10);
+    } else if (page) {
+      books = await Books.find()
+        .skip((Number(page) - 1) * limit)
+        .limit(limit);
     } else {
       books = await Books.find().sort({ title: 1 }).limit(10);
     }
-
+    if (page) {
+      res.status(200).json({
+        success: true,
+        message: "Books retrieved successfully",
+        data: books,
+        meta: {
+          totalItems: totalBooks,
+          currentPage: page,
+          totalPages: Math.ceil(totalBooks / limit),
+        },
+      });
+    }
     res.status(200).json({
       success: true,
       message: "Books retrieved successfully",
