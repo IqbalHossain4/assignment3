@@ -7,7 +7,7 @@ How to get started  </br>
 Clone the repository  </br>
 git clone https://github.com/IqbalHossain4/library-management-backend.git  </br>
 Navigate to the project directory  </br>
-cd assignment3   </br>
+cd library-management-backend   </br>
 Install dependencies  </br>
 npm install  </br>
 Run the server  </br>
