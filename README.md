@@ -5,7 +5,7 @@ Tech Stack </br>
 Node.js Express.js TypeScript Mongoose Database: MongoDB  </br>
 How to get started  </br>
 Clone the repository  </br>
-git clone https://github.com/IqbalHossain4/assignment3  </br>
+git clone https://github.com/IqbalHossain4/library-management-backend.git  </br>
 Navigate to the project directory  </br>
 cd assignment3   </br>
 Install dependencies  </br>
